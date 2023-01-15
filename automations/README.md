@@ -12,3 +12,9 @@ It is clear that it is pretty useful to use data based on current date and time 
 Apart the already existing ones we can add other through the [HA integrations](https://www.home-assistant.io/integrations). 
 
 While automations is a great way to automate things in our home it requires extra caution when multiple automations can control the same device as we might have weird behavior due to conflicting states.
+
+## Scenes
+
+[HA Scenes](https://www.home-assistant.io/integrations/scene/) allows us to create scenes that capture the states you want certain entities to be. 
+
+For example, a scene can specify that light A should be turned on and light B should be bright red. Scenes can be created and managed via the user interface using the Scene Editor. Another example is when we want to open or close all the roller shutter of a home.
