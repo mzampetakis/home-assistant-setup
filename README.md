@@ -6,7 +6,7 @@ The purpose of this repository is to expose the setup process and the functional
 
 The barebone of my smart home setup is based on a [Raspberry pi 4 model B (8GB)](https://www.raspberrypi.comproducts/raspberry-pi-4-model-b/) with access to the local home network. Raspberry pi runs a [Home Assistant Operating System](https://www.home-assistant.io/installation/raspberrypi)
 
-Home Assistant (HA) Operating System is a minimal Operating System optimized to power Home Assistant. It comes with Supervisor to manage Home Assistant Core and Add-ons.
+Home Assistant Operating System (HA OS) is a minimal Operating System optimized to power Home Assistant (HA). It comes with Supervisor to manage Home Assistant Core and Add-ons.
 
 Basic setup of the OS is pretty straight forward and after a few [onboarding steps](https://www.home-assistant.io/getting-started/onboarding) HA will be up and running.
 
@@ -18,7 +18,7 @@ A list of devices I have added can be found at the [Devices & Sensors](/devices-
 
 ## Custom scripts
 
-In order to perform any custom operation within the HA various scripts can be integrated.In my case I have integrated a baric router management through a custom binary interface I have developed.Mor info about custom scripts integrations within the HA can be found at the [Custom Scripts](/custom-scripts) page.
+In order to perform any custom operation within the HA various scripts can be integrated. In my case I have integrated a baric router management through a custom binary interface I have developed.Mor info about custom scripts integrations within the HA can be found at the [Custom Scripts](/custom-scripts) page.
 
 ## Automation
 
@@ -28,8 +28,12 @@ The automation part of the HA is the most interesting one. Using the automation 
 
 At the [configuration-files](/configuration-files) page, a list of the available configuration files I use can be found for reference.
 
+## Application
+
+Other devices such as smart phones and laptops can be added to HA as integrations. Using this way, various automations and scenes can be setup using information fetched from these devices. More details about the application integration can be found at the [Application](/application) page.
+
 ## Add ons
 
-HA OS supports various addons that allow the user to extend the functionality around Home Assistant by installing additional applications.
+HA supports various addons that allow the user to extend the functionality around Home Assistant by installing additional applications.
 
 At the [addons](/addons) page there is a list  of the add ons that I have used in the past (or currently using) and find pretty useful
