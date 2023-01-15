@@ -1,0 +1,171 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+template:
+  - sensor:
+      - name: Weather temperature
+        unit_of_measurement: "°C"
+        state: "{{ state_attr('weather.mzampetakisha', 'temperature') }}"
+
+light:
+  - platform: group
+    name: "Light Bulbs"
+    entities:
+      - light.shelly_bulb_1
+      - light.shelly_bulb_2
+      - light.shelly_bulb_3
+
+fastdotcom:
+  scan_interval:
+    hours: 3
+
+binary_sensor:
+  - platform: workday
+    country: GR
+    workdays: [mon, tue, wed, thu, fri]
+    excludes: [sat, sun, holiday]
+    # Add extra local holidays
+    add_holidays:
+      - "2022-11-11"
+      - "2023-11-11"
+      - "2024-11-11"
+      - "2025-11-11"
+      - "2026-11-11"
+
+switch:
+  - platform: command_line
+    switches:
+      router3_wifi:
+        command_state: "./gorapi --device router3 --command wifi_status"
+        command_on: "./gorapi --device router3 --command wifi_on"
+        command_off: "./gorapi --device router3 --command wifi_off"
+        value_template: '{{ value == "on" }}'
+        friendly_name: Router3 WiFi
+        icon_template: >-
+          {% if is_state('switch.router3_wifi', 'on') %}
+            mdi:wifi-strength-4
+          {% else %}
+            mdi:wifi-strength-off
+          {% endif %}
+
+shell_command:
+  router3_wifi_on: "./gorapi --device router3 --command wifi_on"
+  router3_wifi_off: "./gorapi --device router3 --command wifi_off"
+
+climate:
+  - platform: generic_thermostat
+    name: Heaters
+    heater: switch.thermostat
+    target_sensor: sensor.shellyflowerht_temperature
+    unique_id: central_heating
+    min_temp: 15
+    max_temp: 25
+    target_temp: 25
+    min_cycle_duration:
+      minutes: 5
+
+sensor:
+  - platform: statistics
+    name: "Indoor temperature change for the last 2 hours"
+    entity_id: sensor.shellyflowerht_temperature
+    state_characteristic: change
+    max_age:
+      hours: 2
+    sampling_size: 10
+    precision: 2
+  - platform: command_line
+    name: CPU Temperature
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "°C"
+    value_template: "{{ value | multiply(0.001) | round(0) }}"
+  - platform: command_line
+    name: Router3 status
+    command: "./gorapi --device router3 --command status"
+    value_template: "{{ value }}"
+  - platform: history_stats
+    name: Noone at home for 0.5 hour
+    entity_id: binary_sensor.shelly_motion_motion
+    state: "off"
+    type: ratio
+    end: "{{ now() }}"
+    duration:
+      minutes: 30
+  - platform: history_stats
+    name: Noone at home for 1 hour
+    entity_id: binary_sensor.shelly_motion_motion
+    state: "off"
+    type: ratio
+    end: "{{ now() }}"
+    duration:
+      hours: 1
+  - platform: history_stats
+    name: Noone at home for 1.5 hours
+    entity_id: binary_sensor.shelly_motion_motion
+    state: "off"
+    type: ratio
+    end: "{{ now() }}"
+    duration:
+      hours: 1
+      minutes: 30
+  - platform: history_stats
+    name: Noone at home for 2 hours
+    entity_id: binary_sensor.shelly_motion_motion
+    state: "off"
+    type: ratio
+    end: "{{ now() }}"
+    duration:
+      hours: 2
+  - platform: history_stats
+    name: Noone at home for 3 hours
+    entity_id: binary_sensor.shelly_motion_motion
+    state: "off"
+    type: ratio
+    end: "{{ now() }}"
+    duration:
+      hours: 3
+  - platform: history_stats
+    name: Noone at home for 5 hours
+    entity_id: binary_sensor.shelly_motion_motion
+    state: "off"
+    type: ratio
+    end: "{{ now() }}"
+    duration:
+      hours: 5
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /config
+      - type: disk_use
+      - type: disk_free
+      - type: memory_use_percent
+      - type: memory_use
+      - type: memory_free
+      - type: swap_use_percent
+      - type: swap_use
+      - type: swap_free
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+      - type: throughput_network_in
+        arg: eth0
+      - type: throughput_network_out
+        arg: eth0
+      - type: packets_in
+        arg: eth0
+      - type: packets_out
+        arg: eth0
+      - type: ipv4_address
+        arg: eth0
+      - type: ipv6_address
+        arg: eth0
+      - type: processor_use
+      - type: processor_temperature
+      - type: last_boot

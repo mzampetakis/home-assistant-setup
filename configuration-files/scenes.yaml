@@ -1,0 +1,357 @@
+- id: '1657574003996'
+  name: Meteor Bulbs
+  entities:
+    light.shelly_bulb_1:
+      min_mireds: 153
+      max_mireds: 333
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Shelly Bulb 1
+      supported_features: 36
+      color_mode: rgb
+      brightness: 255
+      hs_color:
+      - 0
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      xy_color:
+      - 0.323
+      - 0.329
+      effect: Meteor Shower
+      state: 'on'
+    light.shelly_bulb_2:
+      min_mireds: 153
+      max_mireds: 333
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Shelly Bulb 2
+      supported_features: 36
+      color_mode: rgb
+      brightness: 255
+      hs_color:
+      - 20.503
+      - 78.039
+      rgb_color:
+      - 255
+      - 124
+      - 56
+      xy_color:
+      - 0.597
+      - 0.358
+      effect: Meteor Shower
+      state: 'on'
+    light.shelly_bulb_3:
+      min_mireds: 153
+      max_mireds: 333
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Shelly Bulb 3
+      supported_features: 36
+      color_mode: rgb
+      brightness: 255
+      hs_color:
+      - 20.503
+      - 78.039
+      rgb_color:
+      - 255
+      - 124
+      - 56
+      xy_color:
+      - 0.597
+      - 0.358
+      effect: Meteor Shower
+      state: 'on'
+  icon: mdi:lightbulb-multiple-outline
+  metadata: {}
+- id: '1657574169392'
+  name: White Bulbs
+  entities:
+    light.shelly_bulb_1:
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Shelly Bulb 1
+      min_mireds: 153
+      max_mireds: 333
+      supported_features: 36
+      color_mode: color_temp
+      brightness: 255
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      effect: 'Off'
+      color_temp: 153
+      state: 'on'
+    light.shelly_bulb_2:
+      min_mireds: 153
+      max_mireds: 333
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Shelly Bulb 2
+      supported_features: 36
+      color_mode: color_temp
+      brightness: 255
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      effect: 'Off'
+      color_temp: 153
+      state: 'on'
+    light.shelly_bulb_3:
+      min_mireds: 153
+      max_mireds: 333
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Shelly Bulb 3
+      supported_features: 36
+      color_mode: color_temp
+      brightness: 255
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      effect: 'Off'
+      color_temp: 153
+      state: 'on'
+  icon: mdi:lightbulb
+  metadata: {}
+- id: '1665985261487'
+  name: Turn on light bulb 1 to red
+  entities:
+    light.shelly_bulb_1:
+      min_mireds: 153
+      max_mireds: 333
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      icon: mdi:lightbulb-spot
+      friendly_name: Shelly Bulb 1
+      supported_features: 36
+      color_mode: rgb
+      brightness: 255
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      effect: 'Off'
+      state: 'on'
+  icon: mdi:lightbulb-alert
+  metadata: {}
+- id: '1665985749554'
+  name: Turn off light bulb 1
+  entities:
+    light.shelly_bulb_1:
+      min_mireds: 153
+      max_mireds: 333
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      icon: mdi:lightbulb-spot
+      friendly_name: Shelly Bulb 1
+      supported_features: 36
+      state: 'off'
+  icon: mdi:lightbulb-alert-outline
+  metadata: {}
+- id: '1665985779738'
+  name: Turn on light bulb 1 to orange
+  entities:
+    light.shelly_bulb_1:
+      min_mireds: 153
+      max_mireds: 333
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      icon: mdi:lightbulb-spot
+      friendly_name: Shelly Bulb 1
+      supported_features: 36
+      color_mode: rgb
+      brightness: 255
+      hs_color:
+      - 30.118
+      - 100
+      rgb_color:
+      - 255
+      - 128
+      - 0
+      xy_color:
+      - 0.611
+      - 0.375
+      effect: 'Off'
+      state: 'on'
+  icon: mdi:lightbulb-alert
+  metadata: {}
+- id: '1666069269203'
+  name: Turn off light bulbs
+  entities:
+    light.shelly_bulb_1:
+      min_mireds: 153
+      max_mireds: 333
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      icon: mdi:lightbulb-spot
+      friendly_name: Shelly Bulb 1
+      supported_features: 36
+      state: 'off'
+    light.shelly_bulb_2:
+      min_mireds: 153
+      max_mireds: 333
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      icon: mdi:lightbulb-spot
+      friendly_name: Shelly Bulb 2
+      supported_features: 36
+      state: 'off'
+    light.shelly_bulb_3:
+      min_mireds: 153
+      max_mireds: 333
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - color_temp
+      - rgb
+      icon: mdi:lightbulb-spot
+      friendly_name: Shelly Bulb 3
+      supported_features: 36
+      state: 'off'
+  icon: mdi:lightbulb-spot-off
+  metadata: {}
+- id: '1673211360409'
+  name: Close all rollers
+  entities:
+    cover.shelly_roller_living1:
+      current_position: 0
+      device_class: shutter
+      friendly_name: Shelly Roller Living1
+      supported_features: 15
+      state: closed
+    cover.shellyswitch25_4c752534851b:
+      current_position: 0
+      device_class: shutter
+      friendly_name: Shelly Roller Living2
+      supported_features: 15
+      state: closed
+    cover.shelly_roller_kitchen:
+      current_position: 0
+      device_class: shutter
+      friendly_name: Shelly Roller Kitchen
+      supported_features: 15
+      state: closed
+  icon: mdi:window-shutter
+  metadata: {}
+- id: '1673211537572'
+  name: Open all rollers
+  entities:
+    cover.shelly_roller_living1:
+      current_position: 0
+      device_class: shutter
+      friendly_name: Shelly Roller Living1
+      supported_features: 15
+      state: closed
+    cover.shellyswitch25_4c752534851b:
+      current_position: 0
+      device_class: shutter
+      friendly_name: Shelly Roller Living2
+      supported_features: 15
+      state: closed
+    cover.shelly_roller_kitchen:
+      current_position: 0
+      device_class: shutter
+      friendly_name: Shelly Roller Kitchen
+      supported_features: 15
+      state: closed
+  icon: mdi:window-shutter-open
+  metadata: {}

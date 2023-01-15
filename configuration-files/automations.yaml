@@ -1,0 +1,530 @@
+- id: '1647621421205'
+  alias: On Double click Toggle Plug
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 90d72ac96fc822d9480319bd0239cb6b
+    domain: shelly
+    type: double
+    subtype: button
+  condition: []
+  action:
+  - type: toggle
+    device_id: d63a27cffa4e84a95d703c85ac941e17
+    entity_id: switch.shellyflowerplug
+    domain: switch
+  mode: single
+- id: '1650177934988'
+  alias: Turn on Router3 WiFi with long press
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 90d72ac96fc822d9480319bd0239cb6b
+    domain: shelly
+    type: long
+    subtype: button
+  condition:
+  - condition: state
+    entity_id: switch.router3_wifi
+    state: 'off'
+  action:
+  - service: shell_command.router3_wifi_on
+    data: {}
+  mode: single
+- id: '1650179750782'
+  alias: Turn off Router3 WiFi at 20:30
+  description: ''
+  trigger:
+  - platform: time
+    at: '20:30:00'
+  condition:
+  - condition: state
+    entity_id: switch.router3_wifi
+    state: 'on'
+  action:
+  - service: shell_command.router3_wifi_off
+    data: {}
+  mode: single
+- id: '1650180126584'
+  alias: Turn off Router3 WiFi at 01:30
+  description: ''
+  trigger:
+  - platform: time
+    at: 01:30:00
+  condition:
+  - condition: state
+    entity_id: switch.router3_wifi
+    state: 'on'
+  action:
+  - service: shell_command.router3_wifi_off
+    data: {}
+  mode: single
+- id: '1652380928900'
+  alias: Turn off Router3 WiFi with long press
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 90d72ac96fc822d9480319bd0239cb6b
+    domain: shelly
+    type: long
+    subtype: button
+  condition:
+  - condition: state
+    entity_id: switch.router3_wifi
+    state: 'on'
+  action:
+  - service: shell_command.router3_wifi_off
+    data: {}
+  mode: single
+- id: '1657558621017'
+  alias: On button press Toggle all Bulbs to on
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 90d72ac96fc822d9480319bd0239cb6b
+    domain: shelly
+    type: single
+    subtype: button
+  condition:
+  - condition: device
+    type: is_off
+    device_id: 0e33f489e83a5dbb3460bfc8ca7ebf17
+    entity_id: light.shelly_bulb_3
+    domain: light
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.white_bulbs
+    metadata: {}
+  mode: single
+- id: '1657567517444'
+  alias: On motion when away open all Lights on
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: f01a36e9749e67d9132f6ba424151f6e
+    entity_id: binary_sensor.shelly_motion_motion
+    domain: binary_sensor
+  condition:
+  - condition: device
+    type: is_on
+    device_id: d63a27cffa4e84a95d703c85ac941e17
+    entity_id: switch.shellyflowerplug
+    domain: switch
+    enabled: true
+  - type: is_illuminance
+    condition: device
+    device_id: f01a36e9749e67d9132f6ba424151f6e
+    entity_id: sensor.shelly_motion_luminosity
+    domain: sensor
+    below: 25
+    enabled: true
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.white_bulbs
+    metadata: {}
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - service: scene.turn_on
+    target:
+      entity_id: scene.turn_off_light_bulbs
+    metadata: {}
+  mode: restart
+- id: '1657568967928'
+  alias: On motion when night at home open one Light on
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: f01a36e9749e67d9132f6ba424151f6e
+    entity_id: binary_sensor.shelly_motion_motion
+    domain: binary_sensor
+  condition:
+  - type: is_illuminance
+    condition: device
+    device_id: f01a36e9749e67d9132f6ba424151f6e
+    entity_id: sensor.shelly_motion_luminosity
+    domain: sensor
+    below: 4
+    enabled: true
+  - condition: device
+    type: is_off
+    device_id: d63a27cffa4e84a95d703c85ac941e17
+    entity_id: switch.shellyflowerplug
+    domain: switch
+    enabled: true
+  - condition: and
+    conditions:
+    - condition: time
+      after: '22:00:00'
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+      before: 08:00:00
+  action:
+  - type: turn_on
+    device_id: e91ad59d5e17e0a1219db9ed3fb109f8
+    entity_id: light.shelly_bulb_2
+    domain: light
+    brightness_pct: 25
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: e91ad59d5e17e0a1219db9ed3fb109f8
+    entity_id: light.shelly_bulb_2
+    domain: light
+  mode: restart
+- id: '1665985594769'
+  alias: When MZ camera turns on turn on to red light bulb 1
+  description: ''
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: 7faacab9c31789f5cfe295cc1e536fe6
+    entity_id: binary_sensor.sunlight_camera_in_use
+    domain: binary_sensor
+  condition:
+  - condition: device
+    type: is_off
+    device_id: d63a27cffa4e84a95d703c85ac941e17
+    entity_id: switch.shellyflowerplug
+    domain: switch
+    enabled: true
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.turn_on_light_bulb_1_to_red
+    metadata: {}
+  mode: single
+- id: '1665985797266'
+  alias: 'When MZ camera turns off turn off light bulb 1 '
+  description: ''
+  trigger:
+  - type: turned_off
+    platform: device
+    device_id: 7faacab9c31789f5cfe295cc1e536fe6
+    entity_id: binary_sensor.sunlight_camera_in_use
+    domain: binary_sensor
+  condition:
+  - condition: device
+    type: is_off
+    device_id: d63a27cffa4e84a95d703c85ac941e17
+    entity_id: switch.shellyflowerplug
+    domain: switch
+    enabled: true
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.turn_off_light_bulb_1
+    metadata: {}
+  mode: single
+- id: '1666201144085'
+  alias: On button press Toggle all Bulbs to off
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 90d72ac96fc822d9480319bd0239cb6b
+    domain: shelly
+    type: single
+    subtype: button
+  condition:
+  - condition: device
+    type: is_on
+    device_id: 0e33f489e83a5dbb3460bfc8ca7ebf17
+    entity_id: light.shelly_bulb_3
+    domain: light
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.turn_off_light_bulbs
+    metadata: {}
+  mode: single
+- id: '1666816635522'
+  alias: Open Kitchen roller shutter in the morning of weekdays
+  description: When movement detected after a certain time open the kitchen roller.
+  trigger:
+  - type: motion
+    platform: device
+    device_id: f01a36e9749e67d9132f6ba424151f6e
+    entity_id: binary_sensor.shelly_motion_motion
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: and
+    conditions:
+    - condition: device
+      device_id: 96db434c40acf35d86dcc5a6a09d47a4
+      domain: cover
+      entity_id: cover.shelly_roller_kitchen
+      type: is_closed
+    - condition: time
+      after: 07:15:00
+      before: 08:00:00
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+  action:
+  - device_id: 96db434c40acf35d86dcc5a6a09d47a4
+    domain: cover
+    entity_id: cover.shelly_roller_kitchen
+    type: set_position
+    position: 100
+  mode: single
+- id: '1666973675231'
+  alias: Open Kitchen roller in the morning of weekends
+  description: When movement detected after a certain time open the kitchen roller.
+  trigger:
+  - type: motion
+    platform: device
+    device_id: f01a36e9749e67d9132f6ba424151f6e
+    entity_id: binary_sensor.shelly_motion_motion
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: and
+    conditions:
+    - condition: device
+      device_id: 96db434c40acf35d86dcc5a6a09d47a4
+      domain: cover
+      entity_id: cover.shelly_roller_kitchen
+      type: is_closed
+    - condition: time
+      after: 08:00:00
+      before: 09:00:00
+      weekday:
+      - sat
+      - sun
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'off'
+  action:
+  - device_id: 96db434c40acf35d86dcc5a6a09d47a4
+    domain: cover
+    entity_id: cover.shelly_roller_kitchen
+    type: set_position
+    position: 100
+  mode: single
+- id: '1666974036798'
+  alias: Open Living room roller shutters in the morning of weekdays
+  description: When movement detected after a certain time open the Living room rollers.
+  trigger:
+  - type: motion
+    platform: device
+    device_id: f01a36e9749e67d9132f6ba424151f6e
+    entity_id: binary_sensor.shelly_motion_motion
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: and
+    conditions:
+    - condition: time
+      after: 07:30:00
+      before: 08:30:00
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+    - condition: device
+      device_id: 5dedc37a392929ba679eccb47cd2c1ee
+      domain: cover
+      entity_id: cover.shellyswitch25_4c752534851b
+      type: is_closed
+  action:
+  - device_id: c47a919d4fd5f982e36617dae3ccdc8e
+    domain: cover
+    entity_id: cover.shelly_roller_living1
+    type: set_position
+    position: 100
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  - device_id: 5dedc37a392929ba679eccb47cd2c1ee
+    domain: cover
+    entity_id: cover.shellyswitch25_4c752534851b
+    type: set_position
+    position: 100
+  mode: single
+- id: '1666974140096'
+  alias: Open Living room roller shutters in the morning of weekends
+  description: When movement detected after a certain time open the Living room rollers.
+  trigger:
+  - type: motion
+    platform: device
+    device_id: f01a36e9749e67d9132f6ba424151f6e
+    entity_id: binary_sensor.shelly_motion_motion
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: and
+    conditions:
+    - condition: time
+      after: 08:30:00
+      before: 09:30:00
+      weekday:
+      - sat
+      - sun
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'off'
+    - condition: device
+      device_id: 5dedc37a392929ba679eccb47cd2c1ee
+      domain: cover
+      entity_id: cover.shellyswitch25_4c752534851b
+      type: is_closed
+  action:
+  - device_id: c47a919d4fd5f982e36617dae3ccdc8e
+    domain: cover
+    entity_id: cover.shelly_roller_living1
+    type: set_position
+    position: 100
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  - device_id: 5dedc37a392929ba679eccb47cd2c1ee
+    domain: cover
+    entity_id: cover.shellyswitch25_4c752534851b
+    type: set_position
+    position: 100
+  mode: single
+- id: '1667310445213'
+  alias: Close all roller shutters at night
+  description: When there is no movement for 1.5 hour.
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.noone_at_home_for_1_5_hours
+    from: '100'
+    to: '100'
+  condition:
+  - condition: time
+    after: '23:00:00'
+    before: 03:00:00
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  action:
+  - device_id: 96db434c40acf35d86dcc5a6a09d47a4
+    domain: cover
+    entity_id: cover.shelly_roller_kitchen
+    type: set_position
+    position: 0
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  - device_id: 5dedc37a392929ba679eccb47cd2c1ee
+    domain: cover
+    entity_id: cover.shellyswitch25_4c752534851b
+    type: set_position
+    position: 0
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  - device_id: c47a919d4fd5f982e36617dae3ccdc8e
+    domain: cover
+    entity_id: cover.shelly_roller_living1
+    type: set_position
+    position: 0
+  mode: single
+- id: '1671655354505'
+  alias: Manually Enable - Turn on thermostat at X for X minutes
+  description: Only if temperature is bellow 22
+  trigger:
+  - platform: time
+    at: 05:00:00
+  condition:
+  - type: is_temperature
+    condition: device
+    device_id: a0abf60782f5772b7bdfbcf2a491a042
+    entity_id: sensor.shellyflowerht_temperature
+    domain: sensor
+    below: 22
+  action:
+  - type: turn_on
+    device_id: 89a38e4ad8a825c8741eee6a9428ef39
+    entity_id: switch.thermostat
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 30
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: 89a38e4ad8a825c8741eee6a9428ef39
+    entity_id: switch.thermostat
+    domain: switch
+  mode: single
+- id: '1672206760853'
+  alias: Manually Enable - Close all rollers shutters at noon
+  description: ''
+  trigger:
+  - platform: time
+    at: '12:00:00'
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.close_all_rollers
+    metadata: {}
+  mode: single
+- id: Rhasspy GetDate
+  alias: Rhasspy GetDate
+  mode: single
+  trigger:
+  - platform: event
+    event_data: {}
+    event_type: rhasspy_GetDate
+  action:
+  - service: mqtt.publish
+    data:
+      topic: hermes/dialogueManager/endSession
+      payload_template: '{"sessionId": "{{ trigger.event.data._intent.sessionId }}",
+        "text": "Today is {{ states.sensor.date.state }}"}'
