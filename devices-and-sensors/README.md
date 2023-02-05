@@ -17,6 +17,39 @@ Integrations do not require some kind of sensor or actuator. There are integrati
 
 ![season](images/season.png)
 
+## Pseudo sensors
+
+HA provides a variety of sensors that allow us to generate data from existing data after proper manipulation of by applying extra logic. Such elements are the [statistics](https://www.home-assistant.io/integrations/statistics/) and [history_stats](https://www.home-assistant.io/integrations/history_stats/). Both of them can provide great insight for our home by combining existing sensors' statistics.
+For instance the following setup allows us to retrieve the temperature change for the last 2 hours.
+```
+sensor:
+  - platform: statistics
+    name: "Indoor temperature change for the last 2 hours"
+    entity_id: sensor.shellyflowerht_temperature
+    state_characteristic: change
+    max_age:
+      hours: 2
+    sampling_size: 10
+    precision: 2
+```
+
+This can be extremely useful in order to setup other automations to our HA setup.
+Another example is the `history_stats` sensor which allows us to examine and compare values of existing sensor values:
+
+```
+sensor:
+  - platform: history_stats
+    name: Noone at home for 2 hours
+    entity_id: binary_sensor.shelly_motion_motion
+    state: "off"
+    type: ratio
+    end: "{{ now() }}"
+    duration:
+      hours: 2
+```
+
+Both of them provides a variety of configuration which allows us to proper setup various scenarios. More integrations can be found at the [HA integrations page](https://www.home-assistant.io/integrations/).
+
 ## Shelly Sensors
 
 Apart from this kind of devices, other smart devices can be integrated manually. For instance, a shelly Humidity & Temperature senor can be integrated and used within the HA after its proper setup.

@@ -13,8 +13,24 @@ Apart the already existing ones we can add other through the [HA integrations](h
 
 While automations is a great way to automate things in our home it requires extra caution when multiple automations can control the same device as we might have weird behavior due to conflicting states.
 
+Here is a short list of the setup automations for my HA:
+* Close all roller shutters at night (when there is no movement for 2 hours)
+* On button press Toggle all Bulbs to on/off
+* On Double click Toggle Smart Plug
+* On motion when night at home turn on one Light
+* Open Living Room roller shutters in the morning of weekdays when motion detected (& weekends)
+* Turn off Router3 WiFi at 01:30
+* When laptop camera turns on, turn on to red light bulb 1
+* When laptop camera turns off, turn off light bulb 1
+
 ## Scenes
 
 [HA Scenes](https://www.home-assistant.io/integrations/scene/) allows us to create scenes that capture the states you want certain entities to be. 
 
 For example, a scene can specify that light A should be turned on and light B should be bright red. Scenes can be created and managed via the user interface using the Scene Editor. Another example is when we want to open or close all the roller shutter of a home.
+
+Here is a list of some setup scenes:
+* Open/Close all roller shutters
+* Turn on/off all light bulbs
+* Night
+* Day
