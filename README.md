@@ -37,3 +37,11 @@ Other devices such as smart phones and laptops can be added to HA as integration
 HA supports various addons that allow the user to extend the functionality around Home Assistant by installing additional applications.
 
 At the [addons](/addons) page there is a list  of the add ons that I have used in the past (or currently using) and find pretty useful
+
+## Voice control
+
+There are various solutions that allow us to control HA devices. The most popular are:
+* [Rhasspy](https://www.home-assistant.io/integrations/rhasspy/)
+* [Mycroft](https://mycroft.ai/)
+* [HA assist](https://www.home-assistant.io/docs/assist/) (Introduced in HA v2023.2)
+
